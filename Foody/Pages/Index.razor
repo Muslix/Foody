@@ -1,0 +1,64 @@
+﻿@page "/"
+@using Foody.Test
+@inject Home homeService
+
+<h1>Foody</h1>
+<div class="bg-light" style="padding-left:1rem;padding-bottom:1rem;padding-right:1rem;padding-top:1rem;">
+    <table class="table table-hover border-0 shadow">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Name </th>
+                <th>Amount </th>
+                <th>Shopping Date</th>
+                <th>Expiry Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < homeService.Produkt.Count(); i++)
+            {
+                <tr>
+                    <td>@homeService.Produkt[i].Name </td>
+                    <td>@homeService.Produkt[i].Amount </td>
+                    <td>@homeService.Produkt[i].DateTimeNow.ToString("dd. MM. yyyy") </td>
+                    <td>@homeService.Produkt[i].ExpiryDate.ToString("dd. MM. yyyy") </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="bg-light" style="padding-left:1rem;padding-bottom:1rem;padding-right:1rem;padding-top:1rem;">
+    <div class="col-md-6 col-lg-6 col-xl-6 shadow">
+
+        <div class="form-group" style="padding-left:1rem;padding-right:1rem">
+            <label>Name</label>
+            <input type="text" @bind="homeService.Name" />
+        </div>
+
+        <div class="form-group" style="padding-left:1rem;padding-right:1rem">
+            <label>Menge</label>
+            <input type="text" @bind="homeService.Amount" />
+
+        </div>
+
+
+        <div class="form-group" style="padding-left:1rem;padding-right:1rem">
+            <label>Expire Date</label>
+            <input type="date" @bind="homeService.ExpiryDate" />
+
+        </div>
+
+        <button class="btn btn-success shadow" @onclick=homeService.Save>Save</button>
+
+    </div>
+</div>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+}
